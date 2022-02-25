@@ -6,13 +6,14 @@ import {
   TextField,
   Paper,
   Grid,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import * as backgroundImage from '../../assets/images/bg.jpg';
+import { useHistory } from 'react-router-dom';
+import * as backgroundImage from '../../assets/images/dashboard.jpg';
 import { useDispatch } from 'react-redux';
 import Actions from '../../store/actions';
 import { SubmitSnackbar } from '../../components';
@@ -27,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+      theme.palette.type === 'light'
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -55,10 +58,12 @@ const useStyles = makeStyles((theme) => ({
   anchor: {
     textDecoration: 'none',
     fontWeight: 600,
-  }
+    cursor: 'pointer',
+  },
 }));
 
 export default function SignInSide(props) {
+  const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -70,8 +75,12 @@ export default function SignInSide(props) {
 
   // Yup schema for validation of form fields
   const schema = Yup.object().shape({
-    username: Yup.string().required(`User Name ${stringConstants.fieldRequiredMsg}`),
-    password: Yup.string().required(`Password ${stringConstants.fieldRequiredMsg}`),
+    username: Yup.string().required(
+      `User Name ${stringConstants.fieldRequiredMsg}`
+    ),
+    password: Yup.string().required(
+      `Password ${stringConstants.fieldRequiredMsg}`
+    ),
   });
   // Submit form with username and password
   const onFormSubmit = async (values, { setErrors }) => {
@@ -85,23 +94,23 @@ export default function SignInSide(props) {
         props.history.push('/');
       })
       .catch((error) => {
-        if(error.response) {
+        if (error.response) {
           if (error.response.status === 405) {
             setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
-          } else if(error.response.status === 422) {
+          } else if (error.response.status === 422) {
             const errorlist = error.response.data.errors;
             setErrors(errorlist);
-          } else if(error.response.status === 404) {
+          } else if (error.response.status === 404) {
             setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
           } else {
             setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
           }
         }
       });
-  }
+  };
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component='main' className={classes.root}>
       <CssBaseline />
       <SubmitSnackbar />
       <Grid item xs={false} sm={4} md={8} className={classes.image} />
@@ -110,7 +119,7 @@ export default function SignInSide(props) {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Log in to your account
           </Typography>
           <Formik
@@ -130,26 +139,26 @@ export default function SignInSide(props) {
             }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
                 <TextField
-                  variant="outlined"
-                  margin="normal"
+                  variant='outlined'
+                  margin='normal'
                   value={values.username}
                   required
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  id="username"
-                  label="User Name"
-                  name="username"
+                  id='username'
+                  label='User Name'
+                  name='username'
                   error={errors.username && touched.username}
                   helperText={
                     errors.username && touched.username && errors.username
                   }
                   autoFocus
-                  autoComplete="current-password"
+                  autoComplete='current-password'
                 />
                 <TextField
-                  variant="outlined"
-                  margin="normal"
+                  variant='outlined'
+                  margin='normal'
                   value={values.password}
                   required
                   fullWidth
@@ -159,22 +168,26 @@ export default function SignInSide(props) {
                   helperText={
                     errors.password && touched.password && errors.password
                   }
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
+                  name='password'
+                  label='Password'
+                  type='password'
+                  id='password'
+                  autoComplete='current-password'
                 />
                 <div className={classes.forgotPass}>
-                  <a className={classes.anchor} href="./forgotpassword" alt="">
+                  <a
+                    className={classes.anchor}
+                    onClick={() => history.push('/forgotpassword')}
+                    alt='Login'
+                  >
                     Forgot your password?
                   </a>
                 </div>
                 <Button
-                  type="submit"
+                  type='submit'
                   fullWidth
-                  variant="contained"
-                  color="primary"
+                  variant='contained'
+                  color='primary'
                   className={classes.submit}
                 >
                   Login

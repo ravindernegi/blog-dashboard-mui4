@@ -6,16 +6,18 @@ import {
   TextField,
   Paper,
   Grid,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import { useHistory } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 import Actions from '../../store/actions';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import * as backgroundImage from '../../assets/images/bg.jpg';
+import * as backgroundImage from '../../assets/images/dashboard.jpg';
 import { SubmitSnackbar } from '../../components';
 import { setSnackbarMsg } from '../../helper/utils';
 import { stringConstants } from '../../constants/stringConstants';
@@ -28,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: `url(${backgroundImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+      theme.palette.type === 'light'
+        ? theme.palette.grey[50]
+        : theme.palette.grey[900],
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
@@ -55,11 +59,13 @@ const useStyles = makeStyles((theme) => ({
   },
   anchor: {
     textDecoration: 'none',
+    cursor: 'pointer',
     fontWeight: 600,
-  }
+  },
 }));
 
 const ForgotPasswordPage = (props) => {
+  const history = useHistory();
   const classes = useStyles();
   const dispatch = useDispatch();
   const [alertBoxOpen, setAlertBoxOpen] = React.useState(false);
@@ -72,7 +78,9 @@ const ForgotPasswordPage = (props) => {
 
   // Yup schema for validation of form fields
   const schema = Yup.object().shape({
-    username: Yup.string().required(`User Name ${stringConstants.fieldRequiredMsg}`)
+    username: Yup.string().required(
+      `User Name ${stringConstants.fieldRequiredMsg}`
+    ),
   });
   // Submit form with username and password
   const onFormSubmit = async (values, { resetForm, setErrors }) => {
@@ -83,9 +91,9 @@ const ForgotPasswordPage = (props) => {
         setPassword(response.data.data.newPassword);
       })
       .catch((error) => {
-        if(error.response) {
+        if (error.response) {
           if (error.response.status === 422) {
-            const errorlist = error.response.data.errors;          
+            const errorlist = error.response.data.errors;
             setErrors(errorlist);
           } else if (error.response.status === 404) {
             setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
@@ -94,7 +102,7 @@ const ForgotPasswordPage = (props) => {
           }
         }
       });
-  }
+  };
 
   // Close Alert msg box
   const handleCloseAlertBox = (event) => {
@@ -103,7 +111,7 @@ const ForgotPasswordPage = (props) => {
   };
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component='main' className={classes.root}>
       <CssBaseline />
       <SubmitSnackbar />
       <Grid item xs={false} sm={4} md={8} className={classes.image} />
@@ -112,18 +120,19 @@ const ForgotPasswordPage = (props) => {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Please enter your user name
           </Typography>
           {alertBoxOpen && (
             <Alert
               open={false}
               style={{ margin: '20px 0px 0px' }}
-              severity="success"
+              severity='success'
               onClose={handleCloseAlertBox}
             >
               <AlertTitle>
-                Password has been reset, Please check your email new password will be there. {password}
+                Password has been reset, Please check your email new password
+                will be there. {password}
               </AlertTitle>
             </Alert>
           )}
@@ -144,33 +153,37 @@ const ForgotPasswordPage = (props) => {
             }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
                 <TextField
-                  variant="outlined"
-                  margin="normal"
+                  variant='outlined'
+                  margin='normal'
                   value={values.username}
                   required
                   fullWidth
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  id="username"
-                  label="User Name"
-                  name="username"
+                  id='username'
+                  label='User Name'
+                  name='username'
                   error={errors.username && touched.username}
                   helperText={
                     errors.username && touched.username && errors.username
                   }
                   autoFocus
-                  autoComplete="current-password"
+                  autoComplete='current-password'
                 />
                 <div className={classes.forgotPass}>
-                  <a className={classes.anchor} href="./login" alt="">
+                  <a
+                    className={classes.anchor}
+                    onClick={() => history.push('/login')}
+                    alt='Login'
+                  >
                     Return to login page
                   </a>
                 </div>
                 <Button
-                  type="submit"
+                  type='submit'
                   fullWidth
-                  variant="contained"
-                  color="primary"
+                  variant='contained'
+                  color='primary'
                   className={classes.submit}
                 >
                   Submit
@@ -182,6 +195,6 @@ const ForgotPasswordPage = (props) => {
       </Grid>
     </Grid>
   );
-}
+};
 
 export default ForgotPasswordPage;

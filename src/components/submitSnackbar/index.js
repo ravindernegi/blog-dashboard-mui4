@@ -1,6 +1,6 @@
 import React from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
-import MuiAlert from '@material-ui/lab/Alert';
+import Snackbar from '@mui/core/Snackbar';
+import MuiAlert from '@mui/lab/Alert';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Actions from '../../store/actions';

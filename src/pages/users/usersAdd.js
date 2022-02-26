@@ -4,38 +4,41 @@ import {
   Typography,
   Accordion,
   AccordionSummary,
-  AccordionDetails
-} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+  AccordionDetails,
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useDispatch, useSelector } from 'react-redux';
 import Actions from '../../store/actions';
 import { setSnackbarMsg } from '../../helper/utils';
-import {
-  UserFormFields
-} from '../../components';
+import { UserFormFields } from '../../components';
 
 const UsersAddPage = (props) => {
   const dispatch = useDispatch();
   const userById = useSelector((state) => state.user.userById);
   const [pageType, setPageType] = React.useState('add');
   const [expandAddUser, setExpandAddUser] = React.useState(true);
-  
+
   const getDetails = (id) => {
     try {
-      dispatch(Actions.userAction.GetUserById(id)).then((response) => {
-        //console.log("response", response);
-      })
-      .catch((error) => {
-        if(error.response) {
-          if (error.response.status === 404) {
-            setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
-          } else {
-            setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
+      dispatch(Actions.userAction.GetUserById(id))
+        .then((response) => {
+          //console.log("response", response);
+        })
+        .catch((error) => {
+          if (error.response) {
+            if (error.response.status === 404) {
+              setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
+            } else {
+              setSnackbarMsg(
+                dispatch,
+                `${stringConstants.apiOtherError}`,
+                true
+              );
+            }
           }
-        }
-      })
+        });
     } catch (err) {
-      console.log("Error", err);
+      console.log('Error', err);
     }
   };
 
@@ -52,17 +55,17 @@ const UsersAddPage = (props) => {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={12} lg={12}>      
+      <Grid item xs={12} md={12} lg={12}>
         <Accordion
           expanded={expandAddUser}
           onChange={(e, exp) => setExpandAddUser(!expandAddUser)}
         >
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+            aria-controls='panel1a-content'
+            id='panel1a-header'
           >
-            <Typography variant="h6" style={{ textTransform: 'capitalize' }}>
+            <Typography variant='h6' style={{ textTransform: 'capitalize' }}>
               {pageType} User
             </Typography>
           </AccordionSummary>

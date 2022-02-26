@@ -1,11 +1,11 @@
 import React from 'react';
 import { Prompt } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 import { stringConstants } from '../../constants/stringConstants';
 
 const CustomModal = (props) => {
@@ -13,25 +13,25 @@ const CustomModal = (props) => {
   return (
     <Dialog
       open={visible}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
     >
-      <DialogTitle id="alert-dialog-title">
+      <DialogTitle id='alert-dialog-title'>
         {stringConstants.unsavedFormLeaveHead}
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText id='alert-dialog-description'>
           {stringConstants.unsavedFormLeave}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onCancel} variant="contained" color="secondary">
+        <Button onClick={onCancel} variant='contained' color='secondary'>
           Cancel
         </Button>
         <Button
           onClick={onConfirm}
-          variant="contained"
-          color="primary"
+          variant='contained'
+          color='primary'
           autoFocus
         >
           Ok
@@ -77,7 +77,7 @@ export class RouteLeavingGuard extends React.Component {
         () => {
           // Navigate to the previous blocked location with your navigate function
           navigate(lastLocation.pathname);
-        },
+        }
       );
     }
   };

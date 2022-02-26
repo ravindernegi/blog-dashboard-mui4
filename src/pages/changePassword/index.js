@@ -6,8 +6,8 @@ import {
   Paper,
   Grid,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from '@mui/material';
+import { makeStyles } from '@mui/material/styles';
 import { withRouter } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Actions from '../../store/actions';
@@ -42,23 +42,28 @@ const ChangePasswordPage = (props) => {
     password: '',
     password_confirmation: '',
   });
-  
+
   /**
    *  Yup schema for validation of form fields
    */
   const schema = Yup.object().shape({
-    old_password: Yup.string().required(`Old Password ${stringConstants.fieldRequiredMsg}`),
+    old_password: Yup.string().required(
+      `Old Password ${stringConstants.fieldRequiredMsg}`
+    ),
     password: Yup.string()
       .min(8, `${stringConstants.passMinValidMsg}`)
       .max(25, `${stringConstants.passMaxValidMsg}`)
       .required(`Password ${stringConstants.fieldRequiredMsg}`)
       .matches(
-        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&\(\)\{\}\[\]\:\;\<\>\,\.\?\/\~\_\+\-\=\|\\])/g,// NOSONAR
-        `${stringConstants.passwordMatchValidMsg}`,
+        /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&\(\)\{\}\[\]\:\;\<\>\,\.\?\/\~\_\+\-\=\|\\])/g, // NOSONAR
+        `${stringConstants.passwordMatchValidMsg}`
       ),
     password_confirmation: Yup.string()
       .required(`Confirm Password ${stringConstants.fieldRequiredMsg}`)
-      .oneOf([Yup.ref('password'), null], `${stringConstants.passConfirmPassMatch}`),
+      .oneOf(
+        [Yup.ref('password'), null],
+        `${stringConstants.passConfirmPassMatch}`
+      ),
   });
 
   /**
@@ -77,24 +82,36 @@ const ChangePasswordPage = (props) => {
               props.history.push('/login');
             })
             .catch((error) => {
-              if(error.response) {
+              if (error.response) {
                 if (error.response.status === 404) {
-                  setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
-                } else if(error.response.status === 404) {
-                  setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
+                  setSnackbarMsg(
+                    dispatch,
+                    `${stringConstants.apiError400}`,
+                    true
+                  );
+                } else if (error.response.status === 404) {
+                  setSnackbarMsg(
+                    dispatch,
+                    `${stringConstants.apiError400}`,
+                    true
+                  );
                 } else {
-                  setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
+                  setSnackbarMsg(
+                    dispatch,
+                    `${stringConstants.apiOtherError}`,
+                    true
+                  );
                 }
               }
             });
         }, 2000);
       })
       .catch((error) => {
-        if(error.response) {
+        if (error.response) {
           if (error.response.status === 422) {
-            const errorlist = error.response.data.errors;          
+            const errorlist = error.response.data.errors;
             setErrors(errorlist);
-          } else if(error.response.status === 404) {
+          } else if (error.response.status === 404) {
             setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
           } else {
             setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
@@ -104,12 +121,12 @@ const ChangePasswordPage = (props) => {
   };
 
   return (
-    <Grid container component="main">
+    <Grid container component='main'>
       <CssBaseline />
       <Grid item xs={false} sm={3} md={3} />
       <Grid item xs={12} sm={6} md={6} component={Paper} elevation={6}>
         <div className={classes.paper}>
-          <Typography component="h1" variant="h5">
+          <Typography component='h1' variant='h5'>
             Change Password
           </Typography>
           <Formik
@@ -127,8 +144,8 @@ const ChangePasswordPage = (props) => {
             }) => (
               <form onSubmit={handleSubmit} className={classes.form} noValidate>
                 <TextField
-                  variant="outlined"
-                  margin="normal"
+                  variant='outlined'
+                  margin='normal'
                   value={values.old_password}
                   required
                   fullWidth
@@ -136,16 +153,18 @@ const ChangePasswordPage = (props) => {
                   onBlur={handleBlur}
                   error={errors.old_password && touched.old_password}
                   helperText={
-                    errors.old_password && touched.old_password && errors.old_password
+                    errors.old_password &&
+                    touched.old_password &&
+                    errors.old_password
                   }
-                  name="old_password"
-                  label="Old Password"
-                  type="password"
-                  id="old_password"
+                  name='old_password'
+                  label='Old Password'
+                  type='password'
+                  id='old_password'
                 />
                 <TextField
-                  variant="outlined"
-                  margin="normal"
+                  variant='outlined'
+                  margin='normal'
                   value={values.password}
                   required
                   fullWidth
@@ -155,14 +174,14 @@ const ChangePasswordPage = (props) => {
                   helperText={
                     errors.password && touched.password && errors.password
                   }
-                  name="password"
-                  label="New Password"
-                  type="password"
-                  id="password"
+                  name='password'
+                  label='New Password'
+                  type='password'
+                  id='password'
                 />
                 <TextField
-                  variant="outlined"
-                  margin="normal"
+                  variant='outlined'
+                  margin='normal'
                   value={values.password_confirmation}
                   required
                   fullWidth
@@ -177,16 +196,16 @@ const ChangePasswordPage = (props) => {
                     touched.password_confirmation &&
                     errors.password_confirmation
                   }
-                  name="password_confirmation"
-                  label="Password Confirmation"
-                  type="password"
-                  id="password_confirmation"
+                  name='password_confirmation'
+                  label='Password Confirmation'
+                  type='password'
+                  id='password_confirmation'
                 />
                 <Button
-                  type="submit"
+                  type='submit'
                   fullWidth
-                  variant="contained"
-                  color="primary"
+                  variant='contained'
+                  color='primary'
                   className={classes.submit}
                 >
                   Change Password

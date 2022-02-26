@@ -14,10 +14,10 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-} from '@material-ui/core';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+} from '@mui/material';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { withRouter } from 'react-router-dom';
 import { routes } from '../../routes/routes';
 import { SubmitSnackbar } from '../../components';
@@ -145,32 +145,32 @@ const MiniDrawer = (props) => {
       {/** Left menu part **/}
       <CssBaseline />
       <AppBar
-        position="absolute"
+        position='absolute'
         className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
             onClick={handleDrawerOpen}
             className={clsx(
               classes.menuButton,
-              open && classes.menuButtonHidden,
+              open && classes.menuButtonHidden
             )}
           >
             <MenuIcon />
           </IconButton>
           <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
+            component='h1'
+            variant='h6'
+            color='inherit'
             noWrap
             className={classes.title}
           >
             Dashboard
           </Typography>
-          <Typography color="inherit">
+          <Typography color='inherit'>
             {userInfo.first_name
               ? `${userInfo.first_name} ${userInfo.last_name}`
               : ''}
@@ -178,7 +178,7 @@ const MiniDrawer = (props) => {
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant='permanent'
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
         }}
@@ -212,14 +212,14 @@ const MiniDrawer = (props) => {
             <ListItemIcon>
               <ExitToAppIcon />
             </ListItemIcon>
-            <ListItemText primary="Logout" />
+            <ListItemText primary='Logout' />
           </ListItem>
         </List>
       </Drawer>
       {/** Right main part **/}
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+        <Container maxWidth='lg' className={classes.container}>
           <SubmitSnackbar />
           {props.children}
         </Container>

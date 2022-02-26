@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { TextField, InputAdornment } from '@material-ui/core';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { TextField, InputAdornment } from '@mui/material';
+import { fade, makeStyles } from '@mui/material/styles';
 import PropTypes from 'prop-types';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -61,7 +61,7 @@ const GlobalFilter = ({
         InputProps={{
           'aria-label': 'search',
           startAdornment: (
-            <InputAdornment position="start">
+            <InputAdornment position='start'>
               <SearchIcon />
             </InputAdornment>
           ),

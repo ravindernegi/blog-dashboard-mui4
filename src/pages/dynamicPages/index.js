@@ -1,20 +1,13 @@
 import React from 'react';
-import {
-  Grid,
-  Tooltip,
-  IconButton
-} from '@material-ui/core';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import EditIcon from '@material-ui/icons/Edit';
+import { Grid, Tooltip, IconButton } from '@mui/material';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import EditIcon from '@mui/icons-material/Edit';
 import { useDispatch, useSelector } from 'react-redux';
 import Actions from '../../store/actions';
 import { setSnackbarMsg } from '../../helper/utils';
-import {
-  EnhancedTable,
-  DialogDeleteModal
-} from '../../components';
+import { EnhancedTable, DialogDeleteModal } from '../../components';
 import { stringConstants } from '../../constants/stringConstants';
 
 const DynamicPages = (props) => {
@@ -29,37 +22,31 @@ const DynamicPages = (props) => {
   const columns = [
     {
       Header: 'Title',
-      accessor: 'title'
+      accessor: 'title',
     },
     {
       Header: 'Status',
-      accessor: 'status'
-    }, 
+      accessor: 'status',
+    },
     {
       Header: 'Action',
       Cell: ({ row }) => (
         <Grid>
-          <Tooltip title="View Page">
+          <Tooltip title='View Page'>
             <IconButton
-              color="primary"
-              aria-label="View Page"
-              onClick={() =>
-                props.history.push(
-                  `pages/${row.original._id}`,
-                )
-              }
+              color='primary'
+              aria-label='View Page'
+              onClick={() => props.history.push(`pages/${row.original._id}`)}
             >
               <VisibilityIcon />
             </IconButton>
           </Tooltip>
-          <Tooltip title="Edit Page">
+          <Tooltip title='Edit Page'>
             <IconButton
-              color="primary"
-              aria-label="Edit Page"
+              color='primary'
+              aria-label='Edit Page'
               onClick={() =>
-                props.history.push(
-                  `pages/${row.original._id}?edit=true`,
-                )
+                props.history.push(`pages/${row.original._id}?edit=true`)
               }
             >
               <EditIcon />
@@ -69,71 +56,90 @@ const DynamicPages = (props) => {
       ),
     },
   ];
-  
-  const deleteHandler = (e, row, op = '') => {    
+
+  const deleteHandler = (e, row, op = '') => {
     setSelectedRow(row);
-    setOpen(true);    
+    setOpen(true);
   };
   const deletePage = (response) => {
     try {
-      if(response !== null) {
+      if (response !== null) {
         const selectedIds = [];
         selectedRow.forEach((listValue) => {
           selectedIds.push(listValue._id);
         });
-        dispatch(Actions.dynamicPageAction.DeletePage(selectedIds)).then((response) => {
-          setSnackbarMsg(dispatch, `${stringConstants.deleteMsg}`);
-          dispatch(Actions.dynamicPageAction.GetPageList()).then((response) => {
-            //console.log("response", response);
+        dispatch(Actions.dynamicPageAction.DeletePage(selectedIds))
+          .then((response) => {
+            setSnackbarMsg(dispatch, `${stringConstants.deleteMsg}`);
+            dispatch(Actions.dynamicPageAction.GetPageList())
+              .then((response) => {
+                //console.log("response", response);
+              })
+              .catch((error) => {
+                if (error.response) {
+                  if (error.response.status === 404) {
+                    setSnackbarMsg(
+                      dispatch,
+                      `${stringConstants.apiError400}`,
+                      true
+                    );
+                  } else {
+                    setSnackbarMsg(
+                      dispatch,
+                      `${stringConstants.apiOtherError}`,
+                      true
+                    );
+                  }
+                }
+              });
           })
           .catch((error) => {
-            if(error.response) {
+            if (error.response) {
               if (error.response.status === 404) {
-                setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
+                setSnackbarMsg(
+                  dispatch,
+                  `${stringConstants.apiError400}`,
+                  true
+                );
               } else {
-                setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
+                setSnackbarMsg(
+                  dispatch,
+                  `${stringConstants.apiOtherError}`,
+                  true
+                );
               }
             }
-          })
-        })
-        .catch((error) => {
-          if(error.response) {
-            if (error.response.status === 404) {
-              setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
-            } else {
-              setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
-            }
-          }
-        })
+          });
       }
       setOpen(false);
       setSelectedRow(null);
     } catch (err) {
-      console.log("err", err);
+      console.log('err', err);
     }
   };
 
   React.useEffect(() => {
-    dispatch(Actions.dynamicPageAction.GetPageList()).then((response) => {
-      //console.log("response", response);
-    })
-    .catch((error) => {
-      if(error.response) {
-        if (error.response.status === 404) {
-          setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
-        } else {
-          setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
+    dispatch(Actions.dynamicPageAction.GetPageList())
+      .then((response) => {
+        //console.log("response", response);
+      })
+      .catch((error) => {
+        if (error.response) {
+          if (error.response.status === 404) {
+            setSnackbarMsg(dispatch, `${stringConstants.apiError400}`, true);
+          } else {
+            setSnackbarMsg(dispatch, `${stringConstants.apiOtherError}`, true);
+          }
         }
-      }
-    })
+      });
   }, []);
 
   React.useEffect(() => {
-    if(pageList.list) {
+    if (pageList.list) {
       setTableData(pageList.list);
     }
   }, [pageList]);
-  
+
   return (
     <>
       <Grid container>
@@ -157,31 +163,25 @@ const DynamicPages = (props) => {
                   });
                 return (
                   <div style={{ display: 'flex' }}>
-                    <Tooltip title="Add Page">
+                    <Tooltip title='Add Page'>
                       <IconButton
-                        aria-label="Add"
-                        color="primary"
+                        aria-label='Add'
+                        color='primary'
                         onClick={() => {
-                          props.history.push('pages/add')
+                          props.history.push('pages/add');
                         }}
                       >
                         <AddBoxIcon />
                       </IconButton>
                     </Tooltip>
-                    <Tooltip title="Delete Page">
+                    <Tooltip title='Delete Page'>
                       <IconButton
-                        aria-label="Delete"
-                        color="primary"
-                        component="span" 
-                        disabled={
-                          noOfSelection === 0
-                        }
+                        aria-label='Delete'
+                        color='primary'
+                        component='span'
+                        disabled={noOfSelection === 0}
                         onClick={(event) =>
-                          deleteHandler(
-                            event,
-                            selecterRows,
-                            'delete',
-                          )
+                          deleteHandler(event, selecterRows, 'delete')
                         }
                       >
                         <DeleteForeverIcon />
@@ -195,8 +195,8 @@ const DynamicPages = (props) => {
         </Grid>
 
         <DialogDeleteModal
-          heading="Delete User"
-          id="ringtone-menu"
+          heading='Delete User'
+          id='ringtone-menu'
           open={open}
           onClose={deletePage}
         />

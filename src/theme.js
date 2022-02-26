@@ -1,11 +1,11 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import { globalThemeEntity } from './constants/applicationConstants';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     fontFamily: globalThemeEntity.primaryFontFamily,
     htmlFontSize: 16,
-    color: 'rgba(0, 0, 0, 0.87)'
+    color: 'rgba(0, 0, 0, 0.87)',
   },
   overrides: {
     MuiCssBaseline: {
@@ -59,9 +59,9 @@ const theme = createMuiTheme({
     divider: globalThemeEntity.themeColorDivider,
     background: {
       paper: globalThemeEntity.backgroundPaperColor,
-      default: globalThemeEntity.backgroundDefaultColor
+      default: globalThemeEntity.backgroundDefaultColor,
     },
-  } 
+  },
 });
 
 export default theme;

@@ -1,9 +1,9 @@
 import React from 'react';
-import HomeIcon from '@material-ui/icons/Home';
-import UserIcon from '@material-ui/icons/Person';
-import PagesIcon from '@material-ui/icons/Pages';
+import HomeIcon from '@mui/icons-material/Home';
+import UserIcon from '@mui/icons-material/Person';
+import PagesIcon from '@mui/icons-material/Pages';
 import { MainLayout } from '../layout';
-import ChangePasswordIcon from '@material-ui/icons/VpnKey';
+import ChangePasswordIcon from '@mui/icons-material/VpnKey';
 import {
   LoginPage,
   ForgotPasswordPage,
@@ -12,7 +12,7 @@ import {
   UsersAddPage,
   DynamicPages,
   DynamicPageAdd,
-  ChangePasswordPage
+  ChangePasswordPage,
 } from '../pages';
 
 export const routes = [
@@ -53,14 +53,14 @@ export const routes = [
     path: '/users/add',
     page: UsersAddPage,
     layoutType: MainLayout,
-    requireAuth: true
+    requireAuth: true,
   },
   {
     label: 'Add User',
     path: '/users/:id',
     page: UsersAddPage,
     layoutType: MainLayout,
-    requireAuth: true
+    requireAuth: true,
   },
   {
     label: 'Pages',
@@ -76,14 +76,14 @@ export const routes = [
     path: '/pages/add',
     page: DynamicPageAdd,
     layoutType: MainLayout,
-    requireAuth: true
+    requireAuth: true,
   },
   {
     label: 'Add Pages',
     path: '/pages/:id',
     page: DynamicPageAdd,
     layoutType: MainLayout,
-    requireAuth: true
+    requireAuth: true,
   },
   {
     label: 'ChangePassword',
@@ -93,5 +93,5 @@ export const routes = [
     requireAuth: true,
     asMenu: true,
     icon: <ChangePasswordIcon />,
-  }
+  },
 ];

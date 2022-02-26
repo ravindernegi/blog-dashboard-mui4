@@ -7,10 +7,10 @@ import {
   Paper,
   Grid,
   Typography,
-} from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Alert, AlertTitle } from '@material-ui/lab';
+} from '@mui/material';
+import Avatar from '@mui/material/Avatar';
+import LockOutlinedIcon from '@mui/icons/LockOutlined';
+import { Alert, AlertTitle } from '@mui/lab';
 import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';

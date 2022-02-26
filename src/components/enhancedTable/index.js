@@ -10,7 +10,7 @@ import {
   TablePagination,
   TableRow,
   TableSortLabel,
-} from '@material-ui/core';
+} from '@mui/material';
 import {
   useGlobalFilter,
   usePagination,
@@ -34,10 +34,10 @@ const IndeterminateCheckbox = React.forwardRef(
 
     return (
       <>
-        <Checkbox color="primary" ref={resolvedRef} {...rest} />
+        <Checkbox color='primary' ref={resolvedRef} {...rest} />
       </>
     );
-  },
+  }
 );
 
 const EnhancedTable = ({
@@ -62,9 +62,11 @@ const EnhancedTable = ({
       columns,
       data,
       initialState: {
-        hiddenColumns: columns.filter(column => column.show === false).map(column => column.accessor),
+        hiddenColumns: columns
+          .filter((column) => column.show === false)
+          .map((column) => column.accessor),
       },
-      autoResetPage: !skipPageReset
+      autoResetPage: !skipPageReset,
     },
     useGlobalFilter,
     useSortBy,
@@ -101,7 +103,7 @@ const EnhancedTable = ({
         }
         return [...columns];
       });
-    },
+    }
   );
 
   // Handle Page No Change
@@ -127,7 +129,7 @@ const EnhancedTable = ({
           actionButtonGroup={toolbar.actionButtonGroup}
         />
       )}
-      <MaUTable {...getTableProps()} size="small">
+      <MaUTable {...getTableProps()} size='small'>
         <TableHead>
           {headerGroups.map((headerGroup, rowIndex) => (
             <TableRow key={rowIndex} {...headerGroup.getHeaderGroupProps()}>

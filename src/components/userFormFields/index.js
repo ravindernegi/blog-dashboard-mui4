@@ -9,9 +9,9 @@ import {
   InputLabel,
   FormControl,
   MenuItem,
-} from '@material-ui/core';
-import EditIcon from '@material-ui/icons/Edit';
-import CancelIcon from '@material-ui/icons/Cancel';
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
@@ -63,7 +63,7 @@ const UserFormFields = (props) => {
       .min(4, 'Username is too short - should be 4 chars minimum')
       .matches(
         /^[A-Za-z0-9 ]+$/,
-        'User name should be alpha numeric and should not have special characters',
+        'User name should be alpha numeric and should not have special characters'
       ),
     first_name: Yup.string().required('This field is required'),
     last_name: Yup.string().required('This field is required'),
@@ -74,7 +74,7 @@ const UserFormFields = (props) => {
       .nullable()
       .matches(
         /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/g,
-        'Please provide a valid phone number',
+        'Please provide a valid phone number'
       ),
     role: Yup.string().required('This field is required'),
     status: Yup.string().required('This field is required'),
@@ -89,7 +89,7 @@ const UserFormFields = (props) => {
           Actions.userAction.UpdateUser({
             ...temp,
             _id,
-          }),
+          })
         )
           .then((response) => {
             setIsDirtyForm(false);
@@ -104,13 +104,13 @@ const UserFormFields = (props) => {
                 setSnackbarMsg(
                   dispatch,
                   `${stringConstants.apiError400}`,
-                  true,
+                  true
                 );
               } else {
                 setSnackbarMsg(
                   dispatch,
                   `${stringConstants.apiOtherError}`,
-                  true,
+                  true
                 );
               }
             }
@@ -131,13 +131,13 @@ const UserFormFields = (props) => {
                 setSnackbarMsg(
                   dispatch,
                   `${stringConstants.apiError400}`,
-                  true,
+                  true
                 );
               } else {
                 setSnackbarMsg(
                   dispatch,
                   `${stringConstants.apiOtherError}`,
-                  true,
+                  true
                 );
               }
             }
@@ -193,17 +193,17 @@ const UserFormFields = (props) => {
             <>
               <Grid item xs={12} md={12} lg={12}>
                 <form onSubmit={handleSubmit} noValidate>
-                  <Grid container direction="row">
+                  <Grid container direction='row'>
                     <Grid item md={6} className={`${classes.marginLeftRight}`}>
                       <TextField
                         className={classes.formControl}
                         disabled={pageType !== 'add'}
-                        margin="normal"
-                        placeholder="User Name"
+                        margin='normal'
+                        placeholder='User Name'
                         required
                         fullWidth
-                        id="username"
-                        name="username"
+                        id='username'
+                        name='username'
                         value={values.username}
                         //onChange={handleChange}
                         onChange={(e, v) => {
@@ -215,35 +215,35 @@ const UserFormFields = (props) => {
                         helperText={
                           errors.username && touched.username && errors.username
                         }
-                        label="User Name"
-                        variant="outlined"
+                        label='User Name'
+                        variant='outlined'
                       />
                     </Grid>
                     <Grid item md={6} className={`${classes.marginLeftRight}`}>
                       <FormControl
                         required
-                        variant="outlined"
+                        variant='outlined'
                         className={classes.formControl}
-                        margin="normal"
+                        margin='normal'
                       >
-                        <InputLabel id="demo-simple-select-outlined-label">
+                        <InputLabel id='demo-simple-select-outlined-label'>
                           Role
                         </InputLabel>
                         <Select
                           disabled={pageType === 'view'}
-                          labelId="demo-simple-select-outlined-label"
-                          id="demo-simple-select-outlined"
-                          placeholder="Role"
-                          name="role"
+                          labelId='demo-simple-select-outlined-label'
+                          id='demo-simple-select-outlined'
+                          placeholder='Role'
+                          name='role'
                           value={values.role}
                           //onChange={handleChange}
                           onChange={(e, v) => {
                             setFieldValue('role', e.target.value, true);
                             setIsDirtyForm(true);
                           }}
-                          label="role"
+                          label='role'
                         >
-                          <MenuItem value="">
+                          <MenuItem value=''>
                             <em>None</em>
                           </MenuItem>
                           <MenuItem value={'admin'}>Admin</MenuItem>
@@ -264,12 +264,12 @@ const UserFormFields = (props) => {
                       <TextField
                         className={classes.formControl}
                         disabled={pageType === 'view'}
-                        margin="normal"
-                        placeholder="First Name"
+                        margin='normal'
+                        placeholder='First Name'
                         required
                         fullWidth
-                        id="first_name"
-                        name="first_name"
+                        id='first_name'
+                        name='first_name'
                         value={values.first_name}
                         //onChange={handleChange}
                         onChange={(e, v) => {
@@ -283,20 +283,20 @@ const UserFormFields = (props) => {
                           touched.first_name &&
                           errors.first_name
                         }
-                        label="First Name"
-                        variant="outlined"
+                        label='First Name'
+                        variant='outlined'
                       />
                     </Grid>
                     <Grid item md={6} className={`${classes.marginLeftRight}`}>
                       <TextField
                         className={classes.formControl}
                         disabled={pageType === 'view'}
-                        margin="normal"
-                        placeholder="Last Name"
+                        margin='normal'
+                        placeholder='Last Name'
                         required
                         fullWidth
-                        id="last_name"
-                        name="last_name"
+                        id='last_name'
+                        name='last_name'
                         value={values.last_name}
                         //onChange={handleChange}
                         onChange={(e, v) => {
@@ -310,20 +310,20 @@ const UserFormFields = (props) => {
                           touched.last_name &&
                           errors.last_name
                         }
-                        label="Last Name"
-                        variant="outlined"
+                        label='Last Name'
+                        variant='outlined'
                       />
                     </Grid>
                     <Grid item md={6} className={`${classes.marginLeftRight}`}>
                       <TextField
                         className={classes.formControl}
                         disabled={pageType !== 'add'}
-                        margin="normal"
-                        placeholder="Email"
+                        margin='normal'
+                        placeholder='Email'
                         required
                         fullWidth
-                        id="email"
-                        name="email"
+                        id='email'
+                        name='email'
                         value={values.email}
                         //onChange={handleChange}
                         onChange={(e, v) => {
@@ -335,19 +335,19 @@ const UserFormFields = (props) => {
                         helperText={
                           errors.email && touched.email && errors.email
                         }
-                        label="Email"
-                        variant="outlined"
+                        label='Email'
+                        variant='outlined'
                       />
                     </Grid>
                     <Grid item md={6} className={`${classes.marginLeftRight}`}>
                       <TextField
                         className={classes.formControl}
                         disabled={pageType === 'view'}
-                        margin="normal"
-                        placeholder="Phone"
+                        margin='normal'
+                        placeholder='Phone'
                         fullWidth
-                        id="phone"
-                        name="phone"
+                        id='phone'
+                        name='phone'
                         value={values.phone}
                         //onChange={handleChange}
                         onChange={(e, v) => {
@@ -359,8 +359,8 @@ const UserFormFields = (props) => {
                         helperText={
                           errors.phone && touched.phone && errors.phone
                         }
-                        label="Phone"
-                        variant="outlined"
+                        label='Phone'
+                        variant='outlined'
                       />
                     </Grid>
                     {pageType === 'add' && (
@@ -372,14 +372,14 @@ const UserFormFields = (props) => {
                         <TextField
                           className={classes.formControl}
                           disabled={pageType === 'view'}
-                          margin="normal"
-                          placeholder="Password"
+                          margin='normal'
+                          placeholder='Password'
                           required
                           fullWidth
-                          id="password"
-                          name="password"
-                          type="password"
-                          autoComplete="new-password"
+                          id='password'
+                          name='password'
+                          type='password'
+                          autoComplete='new-password'
                           value={values.password}
                           //onChange={handleChange}
                           onChange={(e, v) => {
@@ -393,36 +393,36 @@ const UserFormFields = (props) => {
                             touched.password &&
                             errors.password
                           }
-                          label="Password"
-                          variant="outlined"
+                          label='Password'
+                          variant='outlined'
                         />
                       </Grid>
                     )}
                     <Grid item md={6} className={`${classes.marginLeftRight}`}>
                       <FormControl
                         required
-                        variant="outlined"
+                        variant='outlined'
                         className={classes.formControl}
-                        margin="normal"
+                        margin='normal'
                       >
-                        <InputLabel id="demo-simple-select-outlined-label">
+                        <InputLabel id='demo-simple-select-outlined-label'>
                           Status
                         </InputLabel>
                         <Select
                           disabled={pageType === 'view'}
-                          labelId="demo-simple-select-outlined-label"
-                          id="demo-simple-select-outlined"
-                          placeholder="Status"
-                          name="status"
+                          labelId='demo-simple-select-outlined-label'
+                          id='demo-simple-select-outlined'
+                          placeholder='Status'
+                          name='status'
                           value={values.status}
                           //onChange={handleChange}
                           onChange={(e, v) => {
                             setFieldValue('status', e.target.value, true);
                             setIsDirtyForm(true);
                           }}
-                          label="Status"
+                          label='Status'
                         >
-                          <MenuItem value="">
+                          <MenuItem value=''>
                             <em>None</em>
                           </MenuItem>
                           <MenuItem value={'active'}>Active</MenuItem>
@@ -444,13 +444,13 @@ const UserFormFields = (props) => {
 
                   <Grid
                     container
-                    justify="flex-end"
+                    justify='flex-end'
                     style={{ marginTop: '20px' }}
                   >
                     {(pageType === 'add' || pageType === 'edit') && (
                       <Button
-                        variant="contained"
-                        color="primary"
+                        variant='contained'
+                        color='primary'
                         onClick={cancelClick}
                         className={classes.cancelBtnMargin}
                         startIcon={<CancelIcon />}
@@ -460,9 +460,9 @@ const UserFormFields = (props) => {
                     )}
                     {pageType !== 'view' && (
                       <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
+                        type='submit'
+                        variant='contained'
+                        color='primary'
                         className={``}
                       >
                         Save
@@ -473,8 +473,8 @@ const UserFormFields = (props) => {
                       formValues &&
                       formValues.is_active !== 'n' && (
                         <Button
-                          variant="contained"
-                          color="primary"
+                          variant='contained'
+                          color='primary'
                           onClick={() => setPageType('edit')}
                           className={``}
                           startIcon={<EditIcon />}

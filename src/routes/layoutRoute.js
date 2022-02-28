@@ -2,7 +2,7 @@
  * @desc Attaches a layout to a given route and checks for token in local storage
  */
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import { LocalStorageService } from '../helper/utils';
 
 const LayoutRoute = ({
@@ -16,10 +16,10 @@ const LayoutRoute = ({
   // Check if token available for a restricted route, if not redirect to login page
   // else redirect to landing page
   if (requireAuth && token === null) {
-    return <Redirect to={{ pathname: '/login' }} />;
+    return <Navigate to={{ pathname: '/login' }} />;
   }
   if (requireAuth === false && token !== null) {
-    return <Redirect to={{ pathname: '/' }} />;
+    return <Navigate to={{ pathname: '/' }} />;
   }
   return (
     <Route

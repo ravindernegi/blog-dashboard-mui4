@@ -9,9 +9,9 @@ import {
   Typography,
 } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from '@mui/icons/LockOutlined';
+import LockIcon from '@mui/icons-material/Lock';
 import { Alert, AlertTitle } from '@mui/lab';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import Actions from '../../store/actions';
@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const ForgotPasswordPage = (props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const dispatch = useDispatch();
   const [alertBoxOpen, setAlertBoxOpen] = React.useState(false);
@@ -118,7 +118,7 @@ const ForgotPasswordPage = (props) => {
       <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockIcon />
           </Avatar>
           <Typography component='h1' variant='h5'>
             Please enter your user name
@@ -173,7 +173,7 @@ const ForgotPasswordPage = (props) => {
                 <div className={classes.forgotPass}>
                   <a
                     className={classes.anchor}
-                    onClick={() => history.push('/login')}
+                    onClick={() => navigate('/login')}
                     alt='Login'
                   >
                     Return to login page

@@ -6,13 +6,13 @@ import { MainLayout } from '../layout';
 import ChangePasswordIcon from '@mui/icons-material/VpnKey';
 import {
   LoginPage,
-  ForgotPasswordPage,
+  /*  ForgotPasswordPage,
   HomePage,
   UsersPage,
   UsersAddPage,
   DynamicPages,
   DynamicPageAdd,
-  ChangePasswordPage,
+  ChangePasswordPage, */
 } from '../pages';
 
 export const routes = [
@@ -23,7 +23,7 @@ export const routes = [
     requireAuth: false,
     asMenu: false,
   },
-  {
+  /* {
     label: 'ForgotPassword',
     path: '/forgotpassword',
     page: ForgotPasswordPage,
@@ -93,5 +93,5 @@ export const routes = [
     requireAuth: true,
     asMenu: true,
     icon: <ChangePasswordIcon />,
-  },
+  }, */
 ];

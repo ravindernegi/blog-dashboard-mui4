@@ -13,7 +13,7 @@ import {
 import EditIcon from '@mui/icons-material/Edit';
 import CancelIcon from '@mui/icons-material/Cancel';
 import DatePicker from '@mui/lab/DatePicker';
-import CKEditor from 'ckeditor4-react';
+import { CKEditor } from 'ckeditor4-react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';

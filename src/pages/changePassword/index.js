@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 import { makeStyles } from '@mui/material/styles';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../routes/withRouter';
 import { useDispatch } from 'react-redux';
 import Actions from '../../store/actions';
 import { Formik } from 'formik';

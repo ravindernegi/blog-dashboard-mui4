@@ -18,7 +18,7 @@ import {
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { withRouter } from 'react-router-dom';
+import withRouter from '../../routes/withRouter';
 import { routes } from '../../routes/routes';
 import { SubmitSnackbar } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';

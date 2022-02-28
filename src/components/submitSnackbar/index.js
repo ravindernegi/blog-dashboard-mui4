@@ -1,25 +1,29 @@
 import React from 'react';
-import Snackbar from '@mui/core/Snackbar';
+import { Snackbar } from '@mui/material';
 import MuiAlert from '@mui/lab/Alert';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import Actions from '../../store/actions';
 
 function Alert(props) {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
+  return <MuiAlert elevation={6} variant='filled' {...props} />;
 }
 
 const SubmitSnackbar = (props) => {
   const dispatch = useDispatch();
-  const commonSnackbarValue = useSelector((state) => state.common.submitSnackbar);
+  const commonSnackbarValue = useSelector(
+    (state) => state.common.submitSnackbar
+  );
 
   const handleClose = (event, reason) => {
-    dispatch(Actions.commonAction.Snackbar({
-      status: false,
-      messages: '',
-      error: commonSnackbarValue.error,
-      timeout: 2000,
-    }));
+    dispatch(
+      Actions.commonAction.Snackbar({
+        status: false,
+        messages: '',
+        error: commonSnackbarValue.error,
+        timeout: 2000,
+      })
+    );
   };
 
   return (

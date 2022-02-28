@@ -9,10 +9,10 @@ import {
   Typography,
 } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import LockIcon from '@mui/icons-material/Lock';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import * as backgroundImage from '../../assets/images/dashboard.jpg';
 import { useDispatch } from 'react-redux';
 import Actions from '../../store/actions';
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SignInSide(props) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -117,7 +117,7 @@ export default function SignInSide(props) {
       <Grid item xs={12} sm={8} md={4} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockIcon />
           </Avatar>
           <Typography component='h1' variant='h5'>
             Log in to your account
@@ -177,7 +177,7 @@ export default function SignInSide(props) {
                 <div className={classes.forgotPass}>
                   <a
                     className={classes.anchor}
-                    onClick={() => history.push('/forgotpassword')}
+                    onClick={() => navigate('/forgotpassword')}
                     alt='Login'
                   >
                     Forgot your password?

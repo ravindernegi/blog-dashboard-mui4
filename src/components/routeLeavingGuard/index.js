@@ -1,5 +1,5 @@
 import React from 'react';
-import { Prompt } from 'react-router-dom';
+/* import { Prompt } from 'react-router-dom'; */
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -86,7 +86,7 @@ export class RouteLeavingGuard extends React.Component {
     const { modalVisible } = this.state;
     return (
       <>
-        <Prompt when={when} message={this.handleBlockedNavigation} />
+        {/*   <Prompt when={when} message={this.handleBlockedNavigation} /> */}
         <CustomModal
           visible={modalVisible}
           onCancel={this.closeModal}

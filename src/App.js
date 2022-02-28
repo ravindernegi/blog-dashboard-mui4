@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Routes, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
+/* import AdapterDateFns from '@mui/lab/AdapterDateFns'; */
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import LayoutRoute from './routes/layoutRoute';
 import { routes } from './routes/routes';
@@ -110,9 +110,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline>
-        <LocalizationProvider utils={AdapterDateFns}>
+        <LocalizationProvider utils={''}>
           <BrowserRouter>
-            <Switch>
+            <Routes>
               {routes &&
                 routes.map((route, index) => (
                   <LayoutRoute
@@ -125,8 +125,8 @@ function App() {
                   />
                 ))}
               {/* If the route is not defined, the default page is login and if the user is authenticated it will take to home page */}
-              <Redirect to={{ pathname: '/' }} />
-            </Switch>
+              <Navigate to={{ pathname: '/' }} />
+            </Routes>
           </BrowserRouter>
         </LocalizationProvider>
       </CssBaseline>

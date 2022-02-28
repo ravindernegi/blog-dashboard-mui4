@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "https://ravindernegi.github.io/blog-dashboard-mui4",
   "dependencies": {
+    "@emotion/react": "^11.8.1",
+    "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
     "@mui/lab": "^5.0.0-alpha.70",
     "@mui/material": "^5.4.3",
@@ -22,11 +24,7 @@
     "react-table": "7.7.0",
     "redux": "4.1.2",
     "redux-thunk": "2.4.1",
-    "yup": "0.32.11",
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
-  },
-  "resolutions": {
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+    "yup": "0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
